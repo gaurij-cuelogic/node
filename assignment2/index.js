@@ -3,9 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 
-var mongoDB = 'mongodb://127.0.0.1/my_database';
-mongoose.connect(mongoDB, { useNewUrlParser: true });
-mongoose.set('useCreateIndex', true);
+mongoose.connect('mongodb://localhost:27017/Company',{ useNewUrlParser: true },{autoIndex : false});
 
 var Schema = mongoose.Schema;
 var app = express()
@@ -46,16 +44,10 @@ var createData = (req, res, next) => {
         Salary: req.body.salary,
     });
 
-    employee.save(function (err, data) {
-
-        if (err) {
-            throw err;
-        }
-res.send("Inserted" + data);
-
-    });
+    var data = new EmployeeModel(employee);
+    data.save();
+    res.send(data);
 }
-
 
 var showDeletePage = (req,res,next) => {
 
@@ -113,13 +105,12 @@ var showUpdatePages = (req,res,next) => {
 
 app.get('/',createData);
 app.post('/',createData);
-app.get('/deleteEmployee',showDeletePage);
-app.post('/deleteEmployee',deleteEmployee);
-//app.get('/getAllEmployee', getAllEmployee);
-app.get('/updateEmployee',showUpdatePage);
-app.post('/updateEmployeeOne',showEmployeeDetails);
-app.post('/updateEmployeeTwo',updateEmployee);
-app.get('/updateEmployeeTwo',showUpdatePages);
+app.get('/delete',showDeletePage);
+app.post('/delete',deleteEmployee);
+app.get('/update',showUpdatePage);
+// app.post('/updateEmployeeOne',showEmployeeDetails);
+// app.post('/updateEmployeeTwo',updateEmployee);
+// app.get('/updateEmployeeTwo',showUpdatePages);
 
 app.listen(3000);
 
