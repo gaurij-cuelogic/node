@@ -1,0 +1,9 @@
+extends layout 
+
+block content
+  .card.col-4.pb-4
+    .card-body
+      h3.text-primary Our users:  
+      ul.list-group
+      for user in users
+        li.list-group-item= user 
