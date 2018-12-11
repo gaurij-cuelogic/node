@@ -1,6 +1,10 @@
 var mongoose = require ('mongoose');
 var bcrypt = require('bcrypt');
-mongoose.connect('mongodb://localhost:27017/Users', { useNewUrlParser: true }, { autoIndex: false });
+var db = require('mongodb').Db;
+mongoose.connect('mongodb://localhost:27017/Assignment', { useNewUrlParser: true }, { autoIndex: false },function(err,database){
+    error =err;
+    db = database;
+});
 
 var Schema = mongoose.Schema;
 
@@ -16,6 +20,10 @@ userDataSchema.methods.generateHash = function(password){
 }
 
 userDataSchema.methods.validPassword = function(password){
+    if(password == null){
+        //res.send('enter password');
+        res.redirect('/signIn')
+    }
     return bcrypt.compareSync(password,this.password);
 }
 

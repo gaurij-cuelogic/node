@@ -1,5 +1,5 @@
 var mongoose = require ('mongoose');
-mongoose.connect('mongodb://localhost:27017/UserActivity', { useNewUrlParser: true }, { autoIndex: false });
+mongoose.connect('mongodb://localhost:27017/Assignment', { useNewUrlParser: true }, { autoIndex: false });
 var Schema = mongoose.Schema;
 
 
@@ -9,5 +9,6 @@ var userActivitySchema = new Schema({
     UA:{type:String},
     loginDate:{type:String},
 })
+
 
 module.exports = mongoose.model('userActivity',userActivitySchema);
