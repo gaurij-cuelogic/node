@@ -4,7 +4,35 @@
 <head>
     <link rel="stylesheet" href="./stylesheet/main.css">
     <title>User SignIn</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"> </script>
+    <script>
+        function signIn(event) {
+            event.preventDefault();
+            console.log("USERNAME  ======>", document.getElementById("userName").value);
+            var userName = document.getElementById("userName").value;
+            var password = document.getElementById("password").value;
 
+            $.ajax({
+                url: "http://localhost:3000/signIn",
+                method: "POST",
+                data: {
+                    userName: userName,
+                    password: password
+                },
+                success: function (result) {
+                    console.log("REESPONSE =====>", result);
+                    localStorage.setItem("token", result.token);
+                    localStorage.setItem("userName", userName)
+                    if (userName == 'gauri') {
+                        window.location.replace('/adminFunctionalities.html');
+                    }
+                    else {
+                        window.location.replace('/userFunctionalities.html');
+                    }
+                }
+            })
+        }
+    </script>
 
 </head>
 
@@ -17,7 +45,7 @@
         </nav>
     </header>
     <div class="div-class">
-        <form method="POST">
+        <form>
 
             <div>
                 <label for="userName">User Name</label>
@@ -27,9 +55,9 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
             </div>
-            
+
             <div>
-                <button type="submit" class="registerbtn">Submit</button>
+                <input onclick=signIn(event) class="registerbtn" value="submit" />
             </div>
         </form>
     </div>

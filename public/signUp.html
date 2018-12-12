@@ -4,7 +4,35 @@
 <head>
     <link rel="stylesheet" href="./stylesheet/main.css">
     <title>User SignUp</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"> </script>
+    <script>
+        function signUp(event) {
+            event.preventDefault();
+            console.log("USERNAME  ======>", document.getElementById("userName").value);
+            var userName = document.getElementById("userName").value;
+            var password = document.getElementById("password").value;
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
 
+            $.ajax({
+                url: "http://localhost:3000/",
+                method: "POST",
+                data: {
+                    userName: userName,
+                    password: password,
+                    firstName: firstName,
+                    lastName: lastName
+                },
+                success: function (result) {
+                    // console.log("REESPONSE =====>", result);
+                    // console.log("userData===>",userName,password)
+                    localStorage.setItem("token", result.token);
+                    localStorage.setItem("userName", userName)
+                    window.location.replace('/userFunctionalities.html');
+                }
+            })
+        }
+    </script>
 
 </head>
 
@@ -37,10 +65,10 @@
             </div>
 
             <div>
-                <button type="submit" class="registerbtn">Submit</button>
+                <input onclick=signUp(event) class="registerbtn" value="Submit" />
             </div>
 
-            <div class = "link">
+            <div class="link">
                 <p>already a member?</p>
                 <a href="signIn.html">SignIn</a>
             </div>

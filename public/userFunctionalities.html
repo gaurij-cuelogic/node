@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="./stylesheet/main.css">
+    <title>User functions</title>
+    <script>
+            function logout(event){
+            localStorage.clear();
+            window.location.replace('/');
+            }
+        </script>
+
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="heading">
+                <h2>User functions</h2>
+            </div>
+        </nav>
+    </header>
+    <div class="div-class">
+        <form method="POST">
+                <div>
+                        <input type ="button" onclick="location.href='updateUser.html'" class="registerbtn" value="Update profile"/>
+                    </div>
+                    <div>
+                            <input type ="button" onclick=logout() class="registerbtn" value="Logout"/>
+                        </div>
+        </form>
+    </div>
+
+
+</body>
+
+</html>

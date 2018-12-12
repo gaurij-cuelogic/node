@@ -4,11 +4,39 @@
 <head>
     <link rel="stylesheet" href="./stylesheet/main.css">
     <title>Update User</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"> </script>
+    <script>
+        function fetch(event) {
+            document.getElementById('userName').value = localStorage.getItem("userName");
+        }
 
+        function submitUser(event) {
+            event.preventDefault();
+            console.log("in submit")
+            var userName = document.getElementById("userName").value;
+            var password = document.getElementById("password").value;
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
 
+            $.ajax({
+                url: "http://localhost:3000/updateUser",
+                method: "POST",
+                data: {
+                    userName: userName,
+                    password: password,
+                    firstName: firstName,
+                    lastName: lastName
+                },
+                success: function (result) {
+                    console.log("REESPONSE =====>", result);
+                    window.location.replace('/userFunctionalities.html');
+                }
+            })
+        }
+    </script>
 </head>
 
-<body>
+<body onload=fetch(event)>
     <header>
         <nav>
             <div class="heading">
@@ -21,7 +49,7 @@
 
             <div>
                 <label for="userName">User Name</label>
-                <input type="text" class="form-control" id="userName" placeholder="Enter User Name" name="userName">
+                <input type="text" class="form-control" id="userName" name="userName" readonly>
             </div>
             <div>
                 <label for="password">Password</label>
@@ -37,11 +65,11 @@
             </div>
 
             <div>
-                <button type="submit" class="registerbtn">Submit</button>
+                <input type=button onclick=submitUser(event) class="registerbtn" value="Submit" />
             </div>
 
-            
-        
+
+
         </form>
     </div>
 

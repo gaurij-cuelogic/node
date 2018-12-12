@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="./stylesheet/main.css">
+    <title>Admin functions</title>
+    <script>
+        function logout(event) {
+            event.preventDefault();
+            localStorage.clear();
+            window.location.replace('/');
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="heading">
+                <h2>Admin functions</h2>
+            </div>
+        </nav>
+    </header>
+    <div class="div-class">
+        <div>
+            <input type="button" onClick="location.href='allUsers.html'" class="registerbtn" value="Fetch all users" />
+        </div>
+        <div>
+            <input type="button" onClick="location.href='fetchUser.html'" class="registerbtn" value="Fetch a user" />
+        </div>
+        <div>
+            <input type="button" onClick="location.href='adminUpdateUser.html'" class="registerbtn" value="Update a user" />
+        </div>
+        <div>
+                <input type="button" onClick="location.href='notLoggedIn.html'" class="registerbtn" value="not logged in users" />
+            </div>
+        <div>
+            <input type="button" onclick=logout(event) class="registerbtn" value="Logout" />
+        </div>
+    </div>
+</body>
+</html>

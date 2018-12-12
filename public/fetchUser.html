@@ -4,7 +4,43 @@
 <head>
     <link rel="stylesheet" href="./stylesheet/main.css">
     <title>Fetch user</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"> </script>
+    <script>
+        function fetchUser() {
+            console.log("in fetch user");
+            userName = document.getElementById("userName").value;
+            console.log(userName);
 
+            $.ajax({
+                url: "http://localhost:3000/fetchUser",
+                method: "POST",
+                data: {
+                    userName: userName,
+                    //password: password
+                },
+                success: function (result) {
+                    console.log("REESPONSE =====>", result);
+                    var len = Object.keys(result).length
+
+                    $("#userData").append("userName:").append(JSON.stringify(result.userName));
+                    $("#userData").append("firstName").append(JSON.stringify(result.firstName));
+                    $("#userData").append("lastName:").append(JSON.stringify(result.userName));
+
+                    // localStorage.setItem("token",result.token); 
+                    // localStorage.setItem("userName",userName) 
+                    // if(userName == 'gauri'){
+                    //     window.location.replace('/adminFunctionalities.html');
+                    // }
+                    // else{
+                    //     console.log("normal user")
+                    //     window.location.replace('/userFunctionalities.html');
+                    // }
+                }
+            })
+
+        }
+
+    </script>
 
 </head>
 
@@ -21,15 +57,18 @@
 
             <div>
                 <label for="userName">User Name</label>
-                <input type="text" class="form-control" id="userName" placeholder="Enter User Name" name="userName"> 
+                <input type="text" class="form-control" id="userName" placeholder="Enter User Name" name="userName">
             </div>
 
             <div>
-                <button type="submit" class="registerbtn">Submit</button>
+                <input type="button" onclick=fetchUser(event) class="registerbtn" value="submit" />
             </div>
-        </form>
-    </div>
 
+        </form>
+
+    </div><br>
+    <div class="div-class" id="userData">
+    </div>
 
 </body>
 

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="./stylesheet/main.css">
+    <title>All Users</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"> </script>
+    <script>
+        function allUsers(event) {
+            console.log(" IN ALL USERS ========>");
+            $.ajax({
+                url: "http://localhost:3000/allUsers",
+                method: "GET",
+                success: function (result) {
+                    console.log("REESPONSE =====>", result);
+                    var numberOfUsers = Object.keys(result).length;
+                    for (var i = 0; i < numberOfUsers; i++) {
+                        $("#userData").append("userName:").append(JSON.stringify(result[i].userName));
+                        $("#userData").append("firstName:").append(JSON.stringify(result[i].firstName));
+                        $("#userData").append("lastName:").append(JSON.stringify(result[i].lastName));
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+
+<body onload=allUsers(event)>
+    <header>
+        <nav>
+            <div class="heading">
+                <h2>All users</h2>
+                <div id="userData" class="div-class"></div>
+            </div>
+        </nav>
+    </header>
+</body>
+
+</html>

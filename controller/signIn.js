@@ -5,7 +5,7 @@ var moment = require('moment');
 var requestIp = require('request-ip');
 var jwt = require('jsonwebtoken');
 var useragent = require('express-useragent');
-var localStorage = require('localStorage');
+
 
 class SignIn {
     signInPost(req, res) {
@@ -18,42 +18,51 @@ class SignIn {
                 if (users == null) {
                     res.send("Enter valid user name");
                 }
+                if (req.body.password == null) {
+                    res.send("Enter password");
+                }
                 if (!users.validPassword(req.body.password)) {
                     res.send("invalid password");
                 }
                 else {
-                 //   res.send("logged in successfully");
+                    console.log("else")
                     var token = jwt.sign({ userName: users.userName }, 'mysecretkey',
                         {
-                            expiresIn: "2 days"
+                            expiresIn: "2hr"
                         });
-
-
-                    //localStorage.setItem("token",token)
-                    // var value = localStorage.getItem("token");
-                    //console.log(value)
-
+                    console.log("token",token);
                     let clientIp = requestIp.getClientIp(req);
-                    let date = moment().format("MMMM Do YYYY, h:mm:ss a");
+                    let activityDate = moment().format("MM-DD-YYYY");
+                    console.log("date",activityDate);
+                    let source = req.headers['user-agent'],
+                    ua = useragent.parse(source);
+                    console.log("user",ua);
 
-                    var activity = new activityData();
-                    activity.userName = req.body.userName;
-                    activity.IP = clientIp;
-                    // activity.UA = token;
-                    activity.loginDate = date;
+                   // var activity = new activityData();
+                    let activity = {
+                        userName:req.body.userName,
+                        IP : clientIp,
+                        UA : ua,
+                        loginDate : activityDate,
+                        timestamp: Date.now()
+                    }
 
-                    activity.save();
+                    let data = new activityData(activity);
+                    data.save();
+                    console.log("activity ======>",data)
+                  //  activity.save();
                 }
             }
-            res.json(
-                {"token": token,
-                "message":"login successful"
-         })
+            res.json({
+                    "token": token,
+                    "message": "login successful"
+                })
 
-        })
+        }
+        )
     }
 
-
 }
+
 
 module.exports = new SignIn();
