@@ -25,7 +25,8 @@
                     userName: userName,
                     password: password,
                     firstName: firstName,
-                    lastName: lastName
+                    lastName: lastName,
+                    token: localStorage.getItem("token")
                 },
                 success: function (result) {
                     console.log("REESPONSE =====>", result);

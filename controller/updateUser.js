@@ -3,6 +3,7 @@ var userData = require('../models/user');
 class updateUser {
     updateUserPost(req, res, next) {
         console.log("in update user post")
+    
         userData.findOne({ 'userName': req.body.userName }, function (err, user) {
             if (err) {
                 console.log(err);
@@ -16,7 +17,6 @@ class updateUser {
                     user.firstName = req.body.firstName;
                     user.lastName = req.body.lastName;
                     user.save();
-                    res.send("done");
                 }
             }
         })

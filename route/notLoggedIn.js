@@ -2,8 +2,6 @@ const express = require("express");
 const router = express.Router();
 var userActivity = require('../models/userActivity');
 
-
-
 router.get("/", (req, res, next) => {
     userActivity.find({}, (err, result) => {
         if (err) {

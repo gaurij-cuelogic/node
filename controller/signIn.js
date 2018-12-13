@@ -7,9 +7,12 @@ var jwt = require('jsonwebtoken');
 var useragent = require('express-useragent');
 
 
+
 class SignIn {
     signInPost(req, res) {
         console.log("in sign in post")
+     
+
         userData.findOne({ 'userName': req.body.userName }, function (err, users) {
             if (err) {
                 console.log(err);

@@ -5,7 +5,8 @@ const router = express.Router();
 var authenticate = require('../middleware/authenticate');
 
 
-router.get("/", authenticate, (req, res, next) => {
+router.get("/", (req, res, next) => {
+
     res.sendFile(path.join(__dirname + '/../public' + '/fetchUser.html'), function (err) {
         if (err) {
             console.log(err);

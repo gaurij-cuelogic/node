@@ -17,6 +17,7 @@ function submitUser(event){
       var password = document.getElementById("password").value;
       var firstName = document.getElementById("firstName").value;
       var lastName = document.getElementById("lastName").value;
+      var token = localStorage.getItem(token)
 
 
     $.ajax({

@@ -15,7 +15,7 @@ var jwt = require('jsonwebtoken');
 const app = express();
 const server = app.listen(3000);
 const io = require('socket.io').listen(server);
-io.set('origins', 'http://localhost:3000');
+
 
 
 app.use(bodyParser.json());
@@ -75,14 +75,22 @@ app.use('/notLoggedIn',notLoggedIn);
 // const server = app.listen(3000);
 // const io = require('socket.io').listen(server);
 
+// io.sockets.on("connection",function(socket){
+//     socket.on("page_on_load",function(){
+//         //console.log(data.text);
+//         io.sockets.emit("event_updatetext",{value:"hello"});
+//     })
+// })
 
-io.of('/userFunctionalities.html')
-    .on('connection', function (socket) {
-        socket.emit('news', { hello: 'Your functionalities:' });
-        socket.on('Event', function (data) {
-            console.log(data.msg);
-        });
-    });
-
+// io.of('/userFunctionalities.html')
+//     .on('connection', function (socket) {
+//         socket.emit('news', { hello: 'Your functionalities:' });
+//         socket.on('Event', function (data) {
+//             console.log(data.msg);
+//         });
+//     });
+//io.sockets.emit('this', { will: 'be received by everyone' });
 
 console.log("server running at port 3000");
+
+module.exports.io = io;
