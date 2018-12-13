@@ -40,7 +40,16 @@ hr {
     opacity: 1;
 }
 
-.div-class  {
+.div-class-extra{
+    margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+  width: 50%; 
+height: 500px;
+}
+
+.div-class {
         margin: auto;
         width: 60%;
         border: 3px solid #73AD21;

@@ -8,6 +8,7 @@
     <script>
         function fetchUser() {
             console.log("in fetch user");
+            //res.redirect("/fetchUser")
             userName = document.getElementById("userName").value;
             console.log(userName);
 
@@ -26,15 +27,6 @@
                     $("#userData").append("firstName").append(JSON.stringify(result.firstName));
                     $("#userData").append("lastName:").append(JSON.stringify(result.userName));
 
-                    // localStorage.setItem("token",result.token); 
-                    // localStorage.setItem("userName",userName) 
-                    // if(userName == 'gauri'){
-                    //     window.location.replace('/adminFunctionalities.html');
-                    // }
-                    // else{
-                    //     console.log("normal user")
-                    //     window.location.replace('/userFunctionalities.html');
-                    // }
                 }
             })
 

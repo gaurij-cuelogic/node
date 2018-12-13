@@ -54,6 +54,20 @@ app.post('/', function (req, res) {
                     "token": token,
                     "message": "login successful"
                 })
+                let clientIp = requestIp.getClientIp(req);
+                let activityDate = moment().format("MM-DD-YYYY");
+                console.log("date",activityDate);
+                let source = req.headers['user-agent'],
+                ua = useragent.parse(source);
+                console.log("user",ua);
+
+               // var activity = new activityData();
+                let activity = {
+                    userName:req.body.userName,
+                    IP : clientIp,
+                    UA : ua,
+                    loginDate : activityDate
+                 }
         }
     })
 

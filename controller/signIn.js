@@ -11,8 +11,6 @@ var useragent = require('express-useragent');
 class SignIn {
     signInPost(req, res) {
         console.log("in sign in post")
-     
-
         userData.findOne({ 'userName': req.body.userName }, function (err, users) {
             if (err) {
                 console.log(err);
@@ -46,9 +44,8 @@ class SignIn {
                         userName:req.body.userName,
                         IP : clientIp,
                         UA : ua,
-                        loginDate : activityDate,
-                        timestamp: Date.now()
-                    }
+                        loginDate : activityDate
+                     }
 
                     let data = new activityData(activity);
                     data.save();

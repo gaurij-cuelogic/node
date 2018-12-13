@@ -13,7 +13,7 @@ class adminUpdateUser {
                  else {
                      console.log("go the username")
                     user.userName = req.body.userName;
-                    user.password = req.body.password;
+                    user.password = user.generateHash(req.body.password);
                     user.firstName = req.body.firstName;
                     user.lastName = req.body.lastName;
                     user.save();

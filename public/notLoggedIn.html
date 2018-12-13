@@ -34,7 +34,8 @@
                         };
 
                         var tDuration = getDuration(milliseconds);
-                        if (tDuration.days<=5) {
+                        console.log(tDuration.days)
+                        if (tDuration.days>5) {
                             $("#userActivity").append("     userName:        ").append(JSON.stringify(result[i].userName));
                             $("#userActivity").append("     loginDate:      ").append(JSON.stringify(result[i].loginDate));
                         }
@@ -51,7 +52,7 @@
         <nav>
             <div class="heading">
                 <h2>Not logged in users</h2>
-                <div id="userActivity" class="div-class"></div>
+                <div id="userActivity" class="div-class-extra"></div>
             </div>
         </nav>
     </header>

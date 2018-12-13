@@ -22,7 +22,7 @@
     });
 
             $.ajax({
-                url: "http://localhost:3000/",
+                url: "http://localhost:3000",
                 method: "POST",
                 data: {
                     userName: userName,
@@ -34,7 +34,7 @@
                     // console.log("REESPONSE =====>", result);
                     // console.log("userData===>",userName,password)
                     localStorage.setItem("token", result.token);
-                    localStorage.setItem("userName", userName)
+                    localStorage.setItem("userName", userName);
                     window.location.replace('/userFunctionalities.html');
                 }
                
