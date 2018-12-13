@@ -17,7 +17,8 @@
             var password = document.getElementById("password").value;
             var firstName = document.getElementById("firstName").value;
             var lastName = document.getElementById("lastName").value;
-
+            var token = localStorage.getItem("token");
+            console.log(token)
             $.ajax({
                 url: "http://localhost:3000/updateUser",
                 method: "POST",
@@ -25,8 +26,7 @@
                     userName: userName,
                     password: password,
                     firstName: firstName,
-                    lastName: lastName,
-                    token: localStorage.getItem("token")
+                    lastName: lastName
                 },
                 success: function (result) {
                     console.log("REESPONSE =====>", result);

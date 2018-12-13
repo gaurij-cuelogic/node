@@ -31,6 +31,10 @@ class SignIn {
                         {
                             expiresIn: "2hr"
                         });
+                        res.json({
+                            "token": token,
+                            "message": "login successful"
+                        })
                     console.log("token",token);
                     let clientIp = requestIp.getClientIp(req);
                     let activityDate = moment().format("MM-DD-YYYY");
@@ -52,11 +56,9 @@ class SignIn {
                     console.log("activity ======>",data)
                   //  activity.save();
                 }
+                
             }
-            res.json({
-                    "token": token,
-                    "message": "login successful"
-                })
+           
 
         }
         )
