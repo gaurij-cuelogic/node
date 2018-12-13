@@ -15,9 +15,9 @@
                     console.log("REESPONSE =====>", result);
                     var numberOfUsers = Object.keys(result).length;
                     for (var i = 0; i < numberOfUsers; i++) {
-                        $("#userData").append("userName:").append(JSON.stringify(result[i].userName));
-                        $("#userData").append("firstName:").append(JSON.stringify(result[i].firstName));
-                        $("#userData").append("lastName:").append(JSON.stringify(result[i].lastName));
+                        $("#userData").append(" userName:   ").append(JSON.stringify(result[i].userName));
+                        $("#userData").append(" firstName:  ").append(JSON.stringify(result[i].firstName));
+                        $("#userData").append(" lastName:   ").append(JSON.stringify(result[i].lastName));
                     }
                 }
             })

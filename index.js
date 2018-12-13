@@ -72,8 +72,8 @@ app.use('/updateUserForm', updateUserForm);
 app.use('/allUsers', allUsers);
 app.use('/notLoggedIn',notLoggedIn);
 
-// const server = app.listen(3000);
-// const io = require('socket.io').listen(server);
+//const server = app.listen(3000);
+//const io = require('socket.io').listen(server);
 
 // io.sockets.on("connection",function(socket){
 //     socket.on("page_on_load",function(){
@@ -82,15 +82,19 @@ app.use('/notLoggedIn',notLoggedIn);
 //     })
 // })
 
-// io.of('/userFunctionalities.html')
-//     .on('connection', function (socket) {
-//         socket.emit('news', { hello: 'Your functionalities:' });
-//         socket.on('Event', function (data) {
-//             console.log(data.msg);
-//         });
-//     });
-//io.sockets.emit('this', { will: 'be received by everyone' });
+io.of('/signUp')
+    .on('connection', function (socket) {
+        socket.emit('news', { hello: 'WELCOME!' });
+        socket.on('Event', function (data) {
+            console.log(data.msg);
+        });
+    });
+// io.sockets.emit('this', { will: 'be received by everyone' });
+// io.on('connection', function(socket) {
+//     console.log('A user connected');})
+
+ 
 
 console.log("server running at port 3000");
 
-module.exports.io = io;
+//module.exports.io = io;

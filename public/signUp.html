@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="./stylesheet/main.css">
     <title>User SignUp</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
     <script>
         function signUp(event) {
             event.preventDefault();
@@ -13,6 +14,12 @@
             var password = document.getElementById("password").value;
             var firstName = document.getElementById("firstName").value;
             var lastName = document.getElementById("lastName").value;
+
+ var socket = io.connect('http://localhost:3000');
+    socket.on('news', function (data) {
+    alert(data.hello);
+    socket.emit('my other event', { my: 'data' });
+    });
 
             $.ajax({
                 url: "http://localhost:3000/",
@@ -30,8 +37,14 @@
                     localStorage.setItem("userName", userName)
                     window.location.replace('/userFunctionalities.html');
                 }
-            })
-        }
+               
+                })
+                // var socket = io.connect('http://localhost:3000');
+                // socket.on('news', function (data) {
+                //     alert(data.hello);
+                //     socket.emit('my other event', { msg: 'Welcome!' });
+                // })
+            }
     </script>
 
 </head>
